@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "简历抓取工具",
+  "version": "1.0",
+  "description": "一键抓取招聘候选人信息生成简历文本",
+  "permissions": ["activeTab", "scripting", "clipboardWrite", "downloads", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

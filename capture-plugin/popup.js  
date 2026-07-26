@@ -1,0 +1,17 @@
+const captureBtn = document.getElementById('captureBtn');
+const copyBtn = document.getElementById('copyBtn');
+const resumeBox = document.getElementById('resumeBox');
+
+captureBtn.addEventListener('click', async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const res = await chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['content.js']
+  });
+  resumeBox.value = res[0].result;
+});
+
+copyBtn.addEventListener('click', () => {
+  if (!resumeBox.value) return alert("暂无数据");
+  navigator.clipboard.writeText(resumeBox.value).then(()=>alert("复制成功"));
+})
